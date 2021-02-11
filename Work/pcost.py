@@ -4,13 +4,17 @@
 
 def portfolio_cost(filename):
     with open(filename, 'rt') as f:
-        next(f)
+        # next(f)
         total = 0
         for line in f:
             row = line.split(',')
-            shares = int(row[1])
-            price = float(row[2])
-            total += shares * price
+            try:
+                shares = int(row[1])
+                price = float(row[2])
+                total += shares * price
+            except ValueError:
+                print("Couldn't parse", line)
+                
 
     return total
 
